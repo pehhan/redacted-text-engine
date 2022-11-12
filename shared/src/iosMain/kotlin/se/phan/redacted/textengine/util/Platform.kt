@@ -1,4 +1,4 @@
-package se.phan.redacted.textengine
+package se.phan.redacted.textengine.util
 
 import platform.UIKit.UIDevice
 
