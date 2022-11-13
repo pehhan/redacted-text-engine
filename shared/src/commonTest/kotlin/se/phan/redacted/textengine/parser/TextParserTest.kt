@@ -39,23 +39,10 @@ class TextParserTest {
     }
 
     @Test
-    fun `parse dot`() {
-        testPunctuationMark('.')
-    }
-
-    @Test
-    fun `parse comma`() {
-        testPunctuationMark(',')
-    }
-
-    @Test
-    fun `parse exclamation mark`() {
-        testPunctuationMark('!')
-    }
-
-    @Test
-    fun `parse question mark`() {
-        testPunctuationMark('?')
+    fun `parse punctuation`() {
+        for (punctuation in SpecialCharacters.PUNCTUATION) {
+            testPunctuationMark(punctuation)
+        }
     }
 
     @Test

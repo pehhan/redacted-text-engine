@@ -4,16 +4,6 @@ import se.phan.redacted.textengine.*
 
 object TextParser {
 
-    private val punctuationChars = listOf(
-        '.',
-        ',',
-        '!',
-        '?'
-    )
-
-    private val spaceChars = listOf(' ')
-    private val newlineChars = listOf('\n')
-
     fun parse(str: String): RedactedText {
         var currentWord = ""
         val items: MutableList<RedactedTextItem> = mutableListOf()
@@ -39,14 +29,14 @@ object TextParser {
     }
 
     private fun Char.isSpecialCharacter(): Boolean {
-        return this in punctuationChars || this in spaceChars || this in newlineChars
+        return this in SpecialCharacters.ALL
     }
 
     private fun Char.textItemForSpecialCharacter(): RedactedTextItem {
         return when (this) {
-            in punctuationChars -> Punctuation(this)
-            in spaceChars -> Space
-            in newlineChars -> Newline
+            in SpecialCharacters.PUNCTUATION -> Punctuation(this)
+            in SpecialCharacters.SPACE -> Space
+            in SpecialCharacters.NEWLINE -> Newline
             else -> throw IllegalArgumentException("Invalid character: $this")
         }
     }
