@@ -1,3 +1,3 @@
 package se.phan.redacted.textengine
 
-sealed class RedactedTextItem
+data class Guess(val value: String)

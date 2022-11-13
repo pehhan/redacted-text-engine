@@ -23,7 +23,7 @@ class TextParserTest {
         val str = "Dune"
         val text = TextParser.parse(str)
 
-        expect(text.items).toContainExactly(Word(str))
+        expect(text.items).toContainExactly(Word(str, redacted = true))
     }
 
     @Test
@@ -32,9 +32,9 @@ class TextParserTest {
         val text = TextParser.parse(str)
 
         expect(text.items).toContainExactly(
-            Word("Paul"),
+            Word("Paul", redacted = true),
             Space,
-            Word("Atreides")
+            Word("Atreides", redacted = true)
         )
     }
 
@@ -51,10 +51,10 @@ class TextParserTest {
         val text = TextParser.parse(str)
 
         expect(text.items).toContainExactly(
-            Word("Paul"),
+            Word("Paul", redacted = true),
             Punctuation(','),
             Space,
-            Word("Atreides")
+            Word("Atreides", redacted = true)
         )
     }
 
@@ -69,10 +69,10 @@ class TextParserTest {
         val text = TextParser.parse(str)
 
         expect(text.items).toContainExactly(
-            Word("Paul"),
+            Word("Paul", redacted = true),
             Newline,
             Newline,
-            Word("Atreides"),
+            Word("Atreides", redacted = true),
         )
     }
 
@@ -81,9 +81,9 @@ class TextParserTest {
         val text = TextParser.parse(str)
 
         expect(text.items).toContainExactly(
-            Word("Paul"),
+            Word("Paul", redacted = true),
             Space,
-            Word("Atreides"),
+            Word("Atreides", redacted = true),
             Punctuation(punctuationMark),
         )
     }

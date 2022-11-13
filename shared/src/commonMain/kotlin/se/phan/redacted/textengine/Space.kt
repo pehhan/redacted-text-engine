@@ -1,3 +1,3 @@
 package se.phan.redacted.textengine
 
-sealed class RedactedTextItem
+object Space : RedactedTextItem()

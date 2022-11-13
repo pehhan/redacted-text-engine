@@ -12,7 +12,7 @@ object TextParser {
             when {
                 char.isSpecialCharacter() -> {
                     if (currentWord.isNotEmpty()) {
-                        items += Word(currentWord)
+                        items += Word(currentWord, redacted = true)
                     }
                     items += char.textItemForSpecialCharacter()
                     currentWord = ""
@@ -22,7 +22,7 @@ object TextParser {
         }
 
         if (currentWord.isNotEmpty()) {
-            items += Word(currentWord)
+            items += Word(currentWord, redacted = true)
         }
 
         return RedactedText(items)
