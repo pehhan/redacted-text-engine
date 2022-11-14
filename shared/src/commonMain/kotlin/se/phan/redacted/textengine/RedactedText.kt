@@ -3,6 +3,11 @@ package se.phan.redacted.textengine
 data class RedactedText(val items: List<RedactedTextItem>) {
 
     // TODO: Handle the case when the guessed word was already unredacted
+    // Make GuessResult a sealed class:
+    // data class WordAlreadyUnredacted
+    // data class WordUnredacted
+    // data class WordNotInText
+    // ?
     fun makeGuess(guess: Guess): GuessResult {
         return GuessResult(unredactText(guess.value), numberOfMatches(guess))
     }
