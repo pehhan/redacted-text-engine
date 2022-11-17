@@ -6,10 +6,10 @@ import se.phan.redacted.textengine.Guess
 import se.phan.redacted.textengine.parser.TextParser
 import kotlin.test.Test
 
-class NormalDifficultyRendererTest {
+class TrueWordLengthPunctuationVisibleRendererTest {
 
     @Test
-    fun `normal difficulty renderer renders short redacted text`() {
+    fun `renderer renders short redacted text`() {
         val str = "Paul Atreides and Leto Atreides!"
 
         val expectedTextBeforeGuess = "████ ████████ ███ ████ ████████!"
@@ -17,7 +17,7 @@ class NormalDifficultyRendererTest {
 
         val text = TextParser.parse(str)
 
-        val renderer = NormalDifficultyRenderer()
+        val renderer = TrueWordLengthPunctuationVisibleRenderer()
         val renderedTextBefore = renderer.render(text)
 
         expect(renderedTextBefore).toEqual(expectedTextBeforeGuess)
@@ -29,7 +29,7 @@ class NormalDifficultyRendererTest {
     }
 
     @Test
-    fun `normal difficulty renderer renders long redacted text`() {
+    fun `renderer renders long redacted text`() {
         val str = """
             Dune is a 1965 epic science fiction novel by American author Frank Herbert, originally published as two separate serials in Analog magazine. It tied with Roger Zelazny's This Immortal for the Hugo Award in 1966 and it won the inaugural Nebula Award for Best Novel. It is the first installment of the Dune saga. In 2003, it was described as the world's best-selling science fiction novel.
 
@@ -68,7 +68,7 @@ class NormalDifficultyRendererTest {
 
         val text = TextParser.parse(str)
 
-        val renderer = NormalDifficultyRenderer()
+        val renderer = TrueWordLengthPunctuationVisibleRenderer()
         val renderedTextBefore = renderer.render(text)
 
         expect(renderedTextBefore).toEqual(expectedTextBeforeGuess)

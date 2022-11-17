@@ -2,7 +2,7 @@ package se.phan.redacted.textengine.renderer
 
 import se.phan.redacted.textengine.*
 
-class NormalDifficultyRenderer : RedactedTextRenderer {
+class TrueWordLengthPunctuationVisibleRenderer : RedactedTextRenderer {
 
     override fun render(text: RedactedText): String {
         var result = ""
