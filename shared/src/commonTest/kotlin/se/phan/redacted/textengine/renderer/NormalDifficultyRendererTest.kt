@@ -10,10 +10,10 @@ class NormalDifficultyRendererTest {
 
     @Test
     fun `normal difficulty renderer renders short redacted text`() {
-        val str = "Paul Atreides and Frank Atreides!"
+        val str = "Paul Atreides and Leto Atreides!"
 
-        val expectedTextBeforeGuess = "████ ████████ ███ █████ ████████!"
-        val expectedTextAfterGuess = "████ Atreides ███ █████ Atreides!"
+        val expectedTextBeforeGuess = "████ ████████ ███ ████ ████████!"
+        val expectedTextAfterGuess = "████ Atreides ███ ████ Atreides!"
 
         val text = TextParser.parse(str)
 

@@ -9,12 +9,12 @@ data class RedactedText(val items: List<RedactedTextItem>) {
     // data class WordNotInText
     // ?
     fun makeGuess(guess: Guess): GuessResult {
-        return GuessResult(unredactText(guess.value), numberOfMatches(guess))
+        return GuessResult(unredactText(guess), numberOfMatches(guess))
     }
 
-    private fun unredactText(str: String): RedactedText {
+    private fun unredactText(guess: Guess): RedactedText {
         val items = items.map { item ->
-            if (item is Word && item.value == str) {
+            if (item is Word && item.matches(guess)) {
                 item.copy(redacted = false)
             } else {
                 item
@@ -27,6 +27,6 @@ data class RedactedText(val items: List<RedactedTextItem>) {
     private fun numberOfMatches(guess: Guess): Int {
         return items
             .filterIsInstance<Word>()
-            .count { it.value == guess.value }
+            .count { it.matches(guess) }
     }
 }
