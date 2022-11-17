@@ -5,18 +5,14 @@ import se.phan.redacted.textengine.*
 class TrueWordLengthPunctuationVisibleRenderer : TextRenderer {
 
     override fun render(text: Text): String {
-        var result = ""
-
-        for (part in text.parts) {
+        return text.parts.fold("") { result, part ->
             when (part) {
-                is Word -> result += renderWord(part)
-                is Punctuation -> result += renderPunctuation(part)
-                is Space -> result += renderSpace()
-                is Newline -> result += renderNewline()
+                is Word -> result + renderWord(part)
+                is Punctuation -> result + renderPunctuation(part)
+                is Space -> result + renderSpace()
+                is Newline -> result + renderNewline()
             }
         }
-
-        return result
     }
 
     private fun renderWord(word: Word): String {
