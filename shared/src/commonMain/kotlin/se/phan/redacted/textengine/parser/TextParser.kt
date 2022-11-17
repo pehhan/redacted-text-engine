@@ -6,15 +6,15 @@ object TextParser {
 
     fun parse(str: String): Text {
         var currentWord = ""
-        val items: MutableList<TextPart> = mutableListOf()
+        val parts: MutableList<TextPart> = mutableListOf()
 
         for (char in str) {
             when {
                 char.isSpecialCharacter() -> {
                     if (currentWord.isNotEmpty()) {
-                        items += Word(currentWord)
+                        parts += Word(currentWord)
                     }
-                    items += char.textItemForSpecialCharacter()
+                    parts += char.textPartForSpecialCharacter()
                     currentWord = ""
                 }
                 else -> currentWord += char
@@ -22,17 +22,17 @@ object TextParser {
         }
 
         if (currentWord.isNotEmpty()) {
-            items += Word(currentWord)
+            parts += Word(currentWord)
         }
 
-        return Text(items)
+        return Text(parts)
     }
 
     private fun Char.isSpecialCharacter(): Boolean {
         return this in SpecialCharacters.ALL
     }
 
-    private fun Char.textItemForSpecialCharacter(): TextPart {
+    private fun Char.textPartForSpecialCharacter(): TextPart {
         return when (this) {
             in SpecialCharacters.PUNCTUATION -> Punctuation(this)
             in SpecialCharacters.SPACE -> Space

@@ -15,7 +15,7 @@ class TextParserTest {
     fun `parse empty string`() {
         val text = TextParser.parse("")
 
-        expect(text.items).toBeEmpty()
+        expect(text.parts).toBeEmpty()
     }
 
     @Test
@@ -23,7 +23,7 @@ class TextParserTest {
         val str = "Dune"
         val text = TextParser.parse(str)
 
-        expect(text.items).toContainExactly(Word(str))
+        expect(text.parts).toContainExactly(Word(str))
     }
 
     @Test
@@ -31,7 +31,7 @@ class TextParserTest {
         val str = "Paul Atreides"
         val text = TextParser.parse(str)
 
-        expect(text.items).toContainExactly(
+        expect(text.parts).toContainExactly(
             Word("Paul"),
             Space,
             Word("Atreides")
@@ -50,7 +50,7 @@ class TextParserTest {
         val str = "Paul, Atreides"
         val text = TextParser.parse(str)
 
-        expect(text.items).toContainExactly(
+        expect(text.parts).toContainExactly(
             Word("Paul"),
             Punctuation(','),
             Space,
@@ -68,7 +68,7 @@ class TextParserTest {
 
         val text = TextParser.parse(str)
 
-        expect(text.items).toContainExactly(
+        expect(text.parts).toContainExactly(
             Word("Paul"),
             Newline,
             Newline,
@@ -80,7 +80,7 @@ class TextParserTest {
         val str = "Paul Atreides$punctuationMark"
         val text = TextParser.parse(str)
 
-        expect(text.items).toContainExactly(
+        expect(text.parts).toContainExactly(
             Word("Paul"),
             Space,
             Word("Atreides"),

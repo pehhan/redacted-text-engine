@@ -1,6 +1,6 @@
 package se.phan.redacted.textengine
 
-data class Text(val items: List<TextPart>) {
+data class Text(val parts: List<TextPart>) {
 
     // TODO: Handle the case when the guessed word was already unredacted
     // Make GuessResult a sealed class:
@@ -13,19 +13,19 @@ data class Text(val items: List<TextPart>) {
     }
 
     private fun unredactText(guess: Guess): Text {
-        val items = items.map { item ->
-            if (item is Word && item.matches(guess)) {
-                item.copy(redacted = false)
+        val parts = parts.map { part ->
+            if (part is Word && part.matches(guess)) {
+                part.copy(redacted = false)
             } else {
-                item
+                part
             }
         }
 
-        return Text(items)
+        return Text(parts)
     }
 
     private fun numberOfMatches(guess: Guess): Int {
-        return items
+        return parts
             .filterIsInstance<Word>()
             .count { it.matches(guess) }
     }

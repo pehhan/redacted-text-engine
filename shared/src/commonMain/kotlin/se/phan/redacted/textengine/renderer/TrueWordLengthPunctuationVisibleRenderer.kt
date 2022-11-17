@@ -2,15 +2,15 @@ package se.phan.redacted.textengine.renderer
 
 import se.phan.redacted.textengine.*
 
-class TrueWordLengthPunctuationVisibleRenderer : RedactedTextRenderer {
+class TrueWordLengthPunctuationVisibleRenderer : TextRenderer {
 
     override fun render(text: Text): String {
         var result = ""
 
-        for (item in text.items) {
-            when (item) {
-                is Word -> result += renderWord(item)
-                is Punctuation -> result += renderPunctuation(item)
+        for (part in text.parts) {
+            when (part) {
+                is Word -> result += renderWord(part)
+                is Punctuation -> result += renderPunctuation(part)
                 is Space -> result += renderSpace()
                 is Newline -> result += renderNewline()
             }

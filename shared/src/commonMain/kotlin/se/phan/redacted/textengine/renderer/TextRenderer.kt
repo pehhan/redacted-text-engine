@@ -2,6 +2,6 @@ package se.phan.redacted.textengine.renderer
 
 import se.phan.redacted.textengine.Text
 
-interface RedactedTextRenderer {
+interface TextRenderer {
     fun render(text: Text): String
 }

@@ -26,7 +26,7 @@ class TextParserWikipediaNovelTest {
 
         val text = TextParser.parse(str)
 
-        expect(text.items).toContainExactly(
+        expect(text.parts).toContainExactly(
             Word("Dune"),
             Space,
             Word("is"),
