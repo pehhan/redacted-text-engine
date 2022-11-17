@@ -1,6 +1,6 @@
 package se.phan.redacted.textengine
 
-data class Word(val value: String, val redacted: Boolean) : RedactedTextItem() {
+data class Word(val value: String, val redacted: Boolean) : TextPart() {
 
     constructor(value: String) : this(value, redacted = true)
 

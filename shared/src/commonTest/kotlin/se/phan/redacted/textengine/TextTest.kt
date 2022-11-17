@@ -5,7 +5,7 @@ import ch.tutteli.atrium.api.verbs.expect
 import se.phan.redacted.textengine.parser.TextParser
 import kotlin.test.Test
 
-class RedactedTextTest {
+class TextTest {
 
     @Test
     fun `when guessing a word that is not in text - the same text with 0 matches should be returned`() {
@@ -25,7 +25,7 @@ class RedactedTextTest {
 
         val result = text.makeGuess(Guess("Paul"))
 
-        val expectedText = RedactedText(listOf(
+        val expectedText = Text(listOf(
             Word("Paul", redacted = false),
             Space,
             Word("Atreides", redacted = true)
@@ -42,7 +42,7 @@ class RedactedTextTest {
 
         val result = text.makeGuess(Guess("Atreides"))
 
-        val expectedText = RedactedText(listOf(
+        val expectedText = Text(listOf(
             Word("Paul", redacted = true),
             Space,
             Word("Atreides", redacted = false),
@@ -119,7 +119,7 @@ class RedactedTextTest {
 
         val result = text.makeGuess(Guess(guess))
 
-        val expectedText = RedactedText(listOf(
+        val expectedText = Text(listOf(
             Word("Paul", redacted = true),
             Space,
             Word(wordInText, redacted = false)

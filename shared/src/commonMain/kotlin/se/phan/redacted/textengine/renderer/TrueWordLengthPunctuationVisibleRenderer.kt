@@ -4,7 +4,7 @@ import se.phan.redacted.textengine.*
 
 class TrueWordLengthPunctuationVisibleRenderer : RedactedTextRenderer {
 
-    override fun render(text: RedactedText): String {
+    override fun render(text: Text): String {
         var result = ""
 
         for (item in text.items) {

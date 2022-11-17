@@ -4,9 +4,9 @@ import se.phan.redacted.textengine.*
 
 object TextParser {
 
-    fun parse(str: String): RedactedText {
+    fun parse(str: String): Text {
         var currentWord = ""
-        val items: MutableList<RedactedTextItem> = mutableListOf()
+        val items: MutableList<TextPart> = mutableListOf()
 
         for (char in str) {
             when {
@@ -25,14 +25,14 @@ object TextParser {
             items += Word(currentWord)
         }
 
-        return RedactedText(items)
+        return Text(items)
     }
 
     private fun Char.isSpecialCharacter(): Boolean {
         return this in SpecialCharacters.ALL
     }
 
-    private fun Char.textItemForSpecialCharacter(): RedactedTextItem {
+    private fun Char.textItemForSpecialCharacter(): TextPart {
         return when (this) {
             in SpecialCharacters.PUNCTUATION -> Punctuation(this)
             in SpecialCharacters.SPACE -> Space
