@@ -1,21 +1,38 @@
 package se.phan.redacted.textengine
 
+import ch.tutteli.atrium.api.fluent.en_GB.toBeTheInstance
 import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect
 import se.phan.redacted.textengine.parser.TextParser
 import kotlin.test.Test
+import kotlin.test.fail
 
 class TextTest {
 
     @Test
-    fun `when guessing a word that is not in text - the same text with 0 matches should be returned`() {
+    fun `when guessing a word that is not in text - the result should be WordNotInText`() {
         val str = "Paul Atreides"
         val text = TextParser.parse(str)
 
         val result = text.makeGuess(Guess("Dune"))
 
-        expect(result.text).toEqual(text)
-        expect(result.matches).toEqual(0)
+        expect(result).toBeTheInstance(WordNotInText)
+    }
+
+    @Test
+    fun `when guessing a word that was already unredacted - the result should be WordAlreadyUnredacted`() {
+        val str = "Paul Atreides"
+        val text = TextParser.parse(str)
+        val guess = Guess("Paul")
+
+        val result = text.makeGuess(guess)
+
+        if (result is WordUnredacted) {
+            val secondResult = result.text.makeGuess(guess)
+            expect(secondResult).toBeTheInstance(WordAlreadyUnredacted)
+        } else {
+            fail()
+        }
     }
 
     @Test
@@ -31,8 +48,12 @@ class TextTest {
             Word("Atreides", redacted = true)
         ))
 
-        expect(result.text).toEqual(expectedText)
-        expect(result.matches).toEqual(1)
+        if (result is WordUnredacted) {
+            expect(result.text).toEqual(expectedText)
+            expect(result.matches).toEqual(1)
+        } else {
+            fail()
+        }
     }
 
     @Test
@@ -54,8 +75,12 @@ class TextTest {
             Word("Atreides", redacted = false)
         ))
 
-        expect(result.text).toEqual(expectedText)
-        expect(result.matches).toEqual(2)
+        if (result is WordUnredacted) {
+            expect(result.text).toEqual(expectedText)
+            expect(result.matches).toEqual(2)
+        } else {
+            fail()
+        }
     }
 
     @Test
@@ -125,7 +150,11 @@ class TextTest {
             Word(wordInText, redacted = false)
         ))
 
-        expect(result.text).toEqual(expectedText)
-        expect(result.matches).toEqual(1)
+        if (result is WordUnredacted) {
+            expect(result.text).toEqual(expectedText)
+            expect(result.matches).toEqual(1)
+        } else {
+            fail()
+        }
     }
 }
