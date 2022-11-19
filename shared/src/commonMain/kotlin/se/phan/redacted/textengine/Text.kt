@@ -33,9 +33,9 @@ data class Text(val parts: List<TextPart>) {
         }
     }
 
-    private fun unredactText(predicate: (Word) -> Boolean): Text {
+    private fun unredactText(shouldUnredactWord: (Word) -> Boolean): Text {
         val parts = parts.map { part ->
-            if (part is Word && predicate(part)) {
+            if (part is Word && shouldUnredactWord(part)) {
                 part.copy(redacted = false)
             } else {
                 part

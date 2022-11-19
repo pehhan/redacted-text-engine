@@ -42,11 +42,13 @@ class TextTest {
 
         val result = text.makeGuess(Guess("Paul"))
 
-        val expectedText = Text(listOf(
-            Word("Paul", redacted = false),
-            Space,
-            Word("Atreides", redacted = true)
-        ))
+        val expectedText = Text(
+            listOf(
+                Word("Paul", redacted = false),
+                Space,
+                Word("Atreides", redacted = true)
+            )
+        )
 
         if (result is WordUnredacted) {
             expect(result.text).toEqual(expectedText)
@@ -63,17 +65,19 @@ class TextTest {
 
         val result = text.makeGuess(Guess("Atreides"))
 
-        val expectedText = Text(listOf(
-            Word("Paul", redacted = true),
-            Space,
-            Word("Atreides", redacted = false),
-            Space,
-            Word("and", redacted = true),
-            Space,
-            Word("Leto", redacted = true),
-            Space,
-            Word("Atreides", redacted = false)
-        ))
+        val expectedText = Text(
+            listOf(
+                Word("Paul", redacted = true),
+                Space,
+                Word("Atreides", redacted = false),
+                Space,
+                Word("and", redacted = true),
+                Space,
+                Word("Leto", redacted = true),
+                Space,
+                Word("Atreides", redacted = false)
+            )
+        )
 
         if (result is WordUnredacted) {
             expect(result.text).toEqual(expectedText)
@@ -173,11 +177,13 @@ class TextTest {
 
         val unredactedText = text.unredactAll()
 
-        val expectedText = Text(listOf(
-            Word("Paul", redacted = false),
-            Space,
-            Word("Atreides", redacted = false),
-        ))
+        val expectedText = Text(
+            listOf(
+                Word("Paul", redacted = false),
+                Space,
+                Word("Atreides", redacted = false),
+            )
+        )
 
         expect(unredactedText).toEqual(expectedText)
     }
@@ -188,11 +194,13 @@ class TextTest {
 
         val result = text.makeGuess(Guess(guess))
 
-        val expectedText = Text(listOf(
-            Word("Paul", redacted = true),
-            Space,
-            Word(wordInText, redacted = false)
-        ))
+        val expectedText = Text(
+            listOf(
+                Word("Paul", redacted = true),
+                Space,
+                Word(wordInText, redacted = false)
+            )
+        )
 
         if (result is WordUnredacted) {
             expect(result.text).toEqual(expectedText)
