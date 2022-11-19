@@ -138,6 +138,50 @@ class TextTest {
         testDifferentCaps("20th", "20TH")
     }
 
+    @Test
+    fun `areAllWordsUnredacted returns true when all words in text are unredacted`() {
+        val parts = listOf(
+            Word("Paul", redacted = false),
+            Space,
+            Word("Atreides", redacted = false),
+        )
+        val text = Text(parts)
+
+        expect(text.areAllWordsUnredacted()).toEqual(true)
+    }
+
+    @Test
+    fun `areAllWordsUnredacted returns false when some words in text is not unredacted`() {
+        val parts = listOf(
+            Word("Paul", redacted = false),
+            Space,
+            Word("Atreides", redacted = true),
+        )
+        val text = Text(parts)
+
+        expect(text.areAllWordsUnredacted()).toEqual(false)
+    }
+
+    @Test
+    fun `unredactAll unredacts all words in text`() {
+        val parts = listOf(
+            Word("Paul", redacted = true),
+            Space,
+            Word("Atreides", redacted = true),
+        )
+        val text = Text(parts)
+
+        val unredactedText = text.unredactAll()
+
+        val expectedText = Text(listOf(
+            Word("Paul", redacted = false),
+            Space,
+            Word("Atreides", redacted = false),
+        ))
+
+        expect(unredactedText).toEqual(expectedText)
+    }
+
     private fun testDifferentCaps(wordInText: String, guess: String) {
         val str = "Paul $wordInText"
         val text = TextParser.parse(str)

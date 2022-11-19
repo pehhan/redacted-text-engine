@@ -9,26 +9,6 @@ data class Text(val parts: List<TextPart>) {
         }
     }
 
-    // TODO: Tests
-    fun areAllWordsUnredacted(): Boolean {
-        return parts
-            .filterIsInstance<Word>()
-            .all { !it.redacted }
-    }
-
-    // TODO: Tests
-    fun unredactAll(): Text {
-        val parts = parts.map { part ->
-            if (part is Word) {
-                part.copy(redacted = false)
-            } else {
-                part
-            }
-        }
-
-        return Text(parts)
-    }
-
     private fun makeGuessForWordInText(guess: Guess): GuessResult {
         return if (isGuessRedacted(guess)) {
             WordUnredacted(unredactText(guess), numberOfMatches(guess))
@@ -37,9 +17,25 @@ data class Text(val parts: List<TextPart>) {
         }
     }
 
+    fun areAllWordsUnredacted(): Boolean {
+        return parts
+            .filterIsInstance<Word>()
+            .all { !it.redacted }
+    }
+
+    fun unredactAll(): Text {
+        return unredactText { true }
+    }
+
     private fun unredactText(guess: Guess): Text {
+        return unredactText { part ->
+            part.matches(guess)
+        }
+    }
+
+    private fun unredactText(predicate: (Word) -> Boolean): Text {
         val parts = parts.map { part ->
-            if (part is Word && part.matches(guess)) {
+            if (part is Word && predicate(part)) {
                 part.copy(redacted = false)
             } else {
                 part
