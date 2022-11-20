@@ -3,10 +3,10 @@ package se.phan.redacted.textengine.parser
 import ch.tutteli.atrium.api.fluent.en_GB.toBeEmpty
 import ch.tutteli.atrium.api.fluent.en_GB.toContainExactly
 import ch.tutteli.atrium.api.verbs.expect
-import se.phan.redacted.textengine.Newline
-import se.phan.redacted.textengine.Punctuation
-import se.phan.redacted.textengine.Space
-import se.phan.redacted.textengine.Word
+import se.phan.redacted.textengine.text.Newline
+import se.phan.redacted.textengine.text.Punctuation
+import se.phan.redacted.textengine.text.Space
+import se.phan.redacted.textengine.text.Word
 import kotlin.test.Test
 
 class TextParserTest {

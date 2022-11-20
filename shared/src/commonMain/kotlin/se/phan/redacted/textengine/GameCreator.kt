@@ -1,6 +1,7 @@
 package se.phan.redacted.textengine
 
 import se.phan.redacted.textengine.difficulty.Difficulty
+import se.phan.redacted.textengine.text.Text
 
 object GameCreator {
 

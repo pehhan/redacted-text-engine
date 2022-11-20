@@ -1,4 +1,6 @@
-package se.phan.redacted.textengine
+package se.phan.redacted.textengine.text
+
+import se.phan.redacted.textengine.*
 
 data class Text(val parts: List<TextPart>) {
 

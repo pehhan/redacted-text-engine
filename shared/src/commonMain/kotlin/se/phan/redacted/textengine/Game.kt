@@ -1,5 +1,7 @@
 package se.phan.redacted.textengine
 
+import se.phan.redacted.textengine.text.Text
+
 data class Game(val title: Text, val text: Text, val guesses: List<Guess>) {
 
     constructor(title: Text, text: Text) : this(title, text, emptyList())

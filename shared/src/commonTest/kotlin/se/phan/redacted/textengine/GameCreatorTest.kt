@@ -4,6 +4,10 @@ import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect
 import se.phan.redacted.textengine.difficulty.Difficulty
 import se.phan.redacted.textengine.parser.TextParser
+import se.phan.redacted.textengine.text.Punctuation
+import se.phan.redacted.textengine.text.Space
+import se.phan.redacted.textengine.text.Text
+import se.phan.redacted.textengine.text.Word
 import kotlin.test.Test
 
 class GameCreatorTest {

@@ -1,6 +1,6 @@
 package se.phan.redacted.textengine.parser
 
-import se.phan.redacted.textengine.*
+import se.phan.redacted.textengine.text.*
 
 object TextParser {
 

@@ -1,4 +1,6 @@
-package se.phan.redacted.textengine
+package se.phan.redacted.textengine.text
+
+import se.phan.redacted.textengine.Guess
 
 data class Word(val value: String, val redacted: Boolean) : TextPart() {
 

@@ -1,6 +1,6 @@
 package se.phan.redacted.textengine.difficulty.normal
 
-import se.phan.redacted.textengine.Word
+import se.phan.redacted.textengine.text.Word
 import se.phan.redacted.textengine.difficulty.UnredactedWordsProvider
 
 class NormalDifficultyUnredactedWordsProvider : UnredactedWordsProvider {

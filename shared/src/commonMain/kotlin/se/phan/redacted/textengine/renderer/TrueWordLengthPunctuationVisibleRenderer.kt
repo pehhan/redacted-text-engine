@@ -1,6 +1,6 @@
 package se.phan.redacted.textengine.renderer
 
-import se.phan.redacted.textengine.*
+import se.phan.redacted.textengine.text.*
 
 class TrueWordLengthPunctuationVisibleRenderer : TextRenderer {
 

@@ -1,7 +1,8 @@
-package se.phan.redacted.textengine
+package se.phan.redacted.textengine.text
 
 import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect
+import se.phan.redacted.textengine.Guess
 import kotlin.test.Test
 
 class WordTest {

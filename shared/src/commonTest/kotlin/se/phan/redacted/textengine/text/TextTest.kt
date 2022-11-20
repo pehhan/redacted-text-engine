@@ -1,8 +1,12 @@
-package se.phan.redacted.textengine
+package se.phan.redacted.textengine.text
 
 import ch.tutteli.atrium.api.fluent.en_GB.toBeTheInstance
 import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect
+import se.phan.redacted.textengine.Guess
+import se.phan.redacted.textengine.WordAlreadyUnredacted
+import se.phan.redacted.textengine.WordNotInText
+import se.phan.redacted.textengine.WordUnredacted
 import se.phan.redacted.textengine.parser.TextParser
 import kotlin.test.Test
 import kotlin.test.fail
