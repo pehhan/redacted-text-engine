@@ -27,9 +27,15 @@ data class Text(val parts: List<TextPart>) {
         return unredactText { true }
     }
 
+    fun unredactWords(words: List<Word>): Text {
+        return unredactText { word ->
+            word in words
+        }
+    }
+
     private fun unredactText(guess: Guess): Text {
-        return unredactText { part ->
-            part.matches(guess)
+        return unredactText { word ->
+            word.matches(guess)
         }
     }
 

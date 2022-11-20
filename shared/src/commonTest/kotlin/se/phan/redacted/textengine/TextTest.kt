@@ -147,7 +147,7 @@ class TextTest {
         val parts = listOf(
             Word("Paul", redacted = false),
             Space,
-            Word("Atreides", redacted = false),
+            Word("Atreides", redacted = false)
         )
         val text = Text(parts)
 
@@ -159,7 +159,7 @@ class TextTest {
         val parts = listOf(
             Word("Paul", redacted = false),
             Space,
-            Word("Atreides", redacted = true),
+            Word("Atreides", redacted = true)
         )
         val text = Text(parts)
 
@@ -171,7 +171,7 @@ class TextTest {
         val parts = listOf(
             Word("Paul", redacted = true),
             Space,
-            Word("Atreides", redacted = true),
+            Word("Atreides", redacted = true)
         )
         val text = Text(parts)
 
@@ -181,7 +181,39 @@ class TextTest {
             listOf(
                 Word("Paul", redacted = false),
                 Space,
-                Word("Atreides", redacted = false),
+                Word("Atreides", redacted = false)
+            )
+        )
+
+        expect(unredactedText).toEqual(expectedText)
+    }
+
+    @Test
+    fun `should be able to unredact a list of words in the text`() {
+        val parts = listOf(
+            Word("Dune"),
+            Space,
+            Word("is"),
+            Space,
+            Word("a"),
+            Space,
+            Word("book"),
+            Punctuation('.')
+        )
+        val text = Text(parts)
+
+        val unredactedText = text.unredactWords(listOf("is", "a").map { Word(it) })
+
+        val expectedText = Text(
+            listOf(
+                Word("Dune"),
+                Space,
+                Word("is", redacted = false),
+                Space,
+                Word("a", redacted = false),
+                Space,
+                Word("book"),
+                Punctuation('.')
             )
         )
 
