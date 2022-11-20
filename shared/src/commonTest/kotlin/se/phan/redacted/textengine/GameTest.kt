@@ -143,7 +143,7 @@ class GameTest {
         val text = TextParser.parse("Paul Atreides")
         val guess1 = Guess("Dune")
 
-        val originalGame = Game(text, title)
+        val originalGame = Game(title, text)
 
         val gameAfterFirstGuess = originalGame.makeGuess(guess1)
 
@@ -191,7 +191,7 @@ class GameTest {
         val text = TextParser.parse("Arrakis is another name for Dune.")
         val guess1 = Guess("Arrakis")
 
-        val originalGame = Game(text, title)
+        val originalGame = Game(title, text)
 
         val gameAfterFirstGuess = originalGame.makeGuess(guess1)
 

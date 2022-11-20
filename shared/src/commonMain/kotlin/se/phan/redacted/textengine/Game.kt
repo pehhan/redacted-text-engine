@@ -1,8 +1,8 @@
 package se.phan.redacted.textengine
 
-data class Game(val text: Text, val title: Text, val guesses: List<Guess>) {
+data class Game(val title: Text, val text: Text, val guesses: List<Guess>) {
 
-    constructor(text: Text, title: Text) : this(text, title, emptyList())
+    constructor(title: Text, text: Text) : this(title, text, emptyList())
 
     fun isCompleted(): Boolean {
         return title.areAllWordsUnredacted()
@@ -12,7 +12,7 @@ data class Game(val text: Text, val title: Text, val guesses: List<Guess>) {
         val titleText = makeGuessForTitle(guess)
 
         return if (titleText.areAllWordsUnredacted()) {
-            Game(text.unredactAll(), titleText, guessesWithNewGuess(guess))
+            Game(titleText, text.unredactAll(), guessesWithNewGuess(guess))
         } else {
             makeGuessForText(guess, titleText)
         }
@@ -27,9 +27,9 @@ data class Game(val text: Text, val title: Text, val guesses: List<Guess>) {
 
     private fun makeGuessForText(guess: Guess, title: Text): Game {
         return when (val result = text.makeGuess(guess)) {
-            is WordUnredacted -> Game(result.text, title, guessesWithNewGuess(guess))
+            is WordUnredacted -> Game(title, result.text, guessesWithNewGuess(guess))
             is WordAlreadyUnredacted -> this
-            is WordNotInText -> Game(text, title, guessesWithNewGuess(guess))
+            is WordNotInText -> Game(title, text, guessesWithNewGuess(guess))
         }
     }
 
